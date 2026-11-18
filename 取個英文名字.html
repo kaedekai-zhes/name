@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>取個英文名字</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700&display=swap">
+<style>
+:root{--paper:#eceff3;--panel:#f8f9fb;--ink:#1d2433;--soft:#5d6677;--line:#cfd6e0;--seal:#b42b2b;--sealtext:#fff;--jade:#3d6b5e;--chip:#e2e7ee;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#141923;--panel:#1c2331;--ink:#e8ecf3;--soft:#9aa5b8;--line:#2e3749;--seal:#c8453f;--jade:#79b3a1;--chip:#262f41;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#141923;--panel:#1c2331;--ink:#e8ecf3;--soft:#9aa5b8;--line:#2e3749;--seal:#c8453f;--jade:#79b3a1;--chip:#262f41;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.7 "Noto Sans TC",system-ui,sans-serif}
+main{max-width:1020px;margin:0 auto;padding:40px 20px 64px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:40px}
+@media (max-width:820px){main{grid-template-columns:1fr;gap:28px;padding-top:28px}}
+h1{font:700 clamp(30px,5vw,44px)/1.2 "Noto Serif TC",serif;margin:0 0 8px;letter-spacing:.04em}
+.lead{color:var(--soft);margin:0 0 28px;max-width:30em}
+fieldset{border:0;padding:0;margin:0 0 24px}
+legend,label.h{font-weight:700;font-size:15px;margin-bottom:8px;display:block;padding:0}
+.hint{color:var(--soft);font-size:13px;font-weight:400;margin-left:6px}
+input[type=text],input[type=date]{width:100%;font:inherit;padding:11px 14px;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:6px}
+input:focus-visible,button:focus-visible{outline:3px solid var(--jade);outline-offset:2px}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.pill{font:inherit;font-size:15px;padding:7px 16px;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;cursor:pointer}
+.pill[aria-pressed=true]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.go{font:700 17px/1 "Noto Sans TC",sans-serif;width:100%;padding:16px;background:var(--seal);color:var(--sealtext);border:0;border-radius:6px;cursor:pointer;letter-spacing:.2em}
+.go:hover{filter:brightness(1.08)}
+.err{color:var(--seal);font-size:14px;min-height:22px;margin:8px 0 0}
+#out{min-width:0}
+.empty{border:1px dashed var(--line);border-radius:10px;padding:40px 24px;color:var(--soft);text-align:center}
+.top{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:28px;display:flex;gap:24px;align-items:flex-start;animation:rise .45s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.top{animation:none}}
+.seal{flex:none;width:76px;background:var(--seal);color:var(--sealtext);border-radius:4px;padding:10px 0;display:flex;flex-direction:column;align-items:center;font:700 26px/1.25 "Noto Serif TC",serif;box-shadow:inset 0 0 0 3px var(--seal),inset 0 0 0 4px rgba(255,255,255,.55)}
+.nm{font:700 clamp(40px,7vw,58px)/1 "Cormorant Garamond",serif;margin:0;overflow-wrap:anywhere}
+.full{font:500 20px "Cormorant Garamond",serif;color:var(--soft);margin:4px 0 10px}
+.mean{margin:0 0 12px}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{background:var(--chip);color:var(--jade);font-size:13px;font-weight:500;padding:2px 10px;border-radius:4px}
+.alts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+@media (max-width:520px){.alts{grid-template-columns:1fr}.top{flex-direction:column}}
+.alt{border:1px solid var(--line);border-radius:10px;padding:16px 18px;background:var(--panel)}
+.alt .nm{font-size:32px}
+.alt .mean{font-size:14px;color:var(--soft);margin:4px 0 8px}
+.again{margin-top:18px;font:inherit;padding:9px 20px;border:1px solid var(--ink);background:transparent;color:var(--ink);border-radius:6px;cursor:pointer}
+.note{color:var(--soft);font-size:13px;margin-top:14px}
+.pron{margin:0 0 10px;color:var(--soft);font-size:15px}.pron span{font-family:"Noto Sans TC",sans-serif;color:var(--ink)}
+.spk{font:inherit;font-size:13px;margin-left:10px;padding:2px 10px;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;cursor:pointer}
+.story{margin:0 0 12px;font-size:15px}.mean b,.story b{color:var(--jade)}
+details{margin:0 0 8px;font-size:14px}summary{cursor:pointer;color:var(--jade)}details .story{margin:6px 0 0;font-size:14px;color:var(--soft)}
+</style>
+</head>
+<body>
+<main>
+<section>
+  <h1>取個英文名字</h1>
+  <p class="lead">告訴我你是誰、你是什麼樣的人，我們從你的個性挑出最適合你的英文名。</p>
+
+  <fieldset>
+    <legend>性別</legend>
+    <div class="row" id="gender">
+      <button type="button" class="pill" data-g="F" aria-pressed="false">女</button>
+      <button type="button" class="pill" data-g="M" aria-pressed="false">男</button>
+      <button type="button" class="pill" data-g="N" aria-pressed="true">不指定</button>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <label class="h" for="cn">中文姓名</label>
+    <input type="text" id="cn" placeholder="例：陳美玲" autocomplete="off" maxlength="8">
+  </fieldset>
+
+  <fieldset>
+    <label class="h" for="bd">生日<span class="hint">選填，用來配對星座特質</span></label>
+    <input type="date" id="bd">
+  </fieldset>
+
+  <fieldset>
+    <label class="h" for="py">拼音<span class="hint">選填，姓在前。用來配對發音相近的名字</span></label>
+    <input type="text" id="py" placeholder="例：Chen Mei-ling" autocomplete="off">
+  </fieldset>
+
+  <fieldset>
+    <legend>人格特質<span class="hint">可複選，點選會念出發音</span></legend>
+    <div class="row" id="traits"></div>
+  </fieldset>
+
+  <button type="button" class="go" id="go">找出我的英文名</button>
+  <p class="err" id="err" role="alert"></p>
+</section>
+
+<section id="out" aria-live="polite">
+  <div class="empty">填好左邊的資料，你的英文名會出現在這裡。</div>
+</section>
+</main>
+
+<script>
+const L={F:['溫柔','聰慧','勇敢','創意','開朗','沉穩','優雅','自由','熱情','誠信','堅韌','幽默','浪漫','細膩','獨立','神祕'],
+M:['體貼','睿智','果敢','創新','陽光','穩重','紳士','冒險','熱血','忠誠','堅毅','風趣','領袖','專注','責任','守護'],
+N:['親切','聰明','無畏','創意','開朗','沉著','得體','自由','熱情','誠信','韌性','幽默','獨立','思辨','包容','好奇']};
+// name, gender, IPA, 中文近似音, 含義, 典故, 特質索引
+const N=[
+['Grace','F','/ɡreɪs/','葛瑞絲','恩典、優雅','源自拉丁文 gratia，是基督教的重要美德。17 世紀的清教徒特別愛用美德名字，讓它廣為流傳。',[0,6,13]],
+['Alice','F','/ˈælɪs/','艾莉絲','高貴的身分','來自古法語 Aalis，源頭是古德語「高貴」。《愛麗絲夢遊仙境》讓它成為好奇與想像力的代名詞。',[3,15,9]],
+['Sophia','F','/soʊˈfiːə/','蘇菲亞','智慧','希臘文 sophia 就是「智慧」。君士坦丁堡的聖索菲亞大教堂，意思是「神聖的智慧」。',[1,6,5]],
+['Lily','F','/ˈlɪli/','莉莉','百合花','百合在基督教藝術中象徵聖母瑪利亞的純潔，歐洲也長期把它當作優雅與純真的象徵。',[0,6,13]],
+['Iris','F','/ˈaɪrɪs/','艾瑞絲','彩虹','希臘神話裡的彩虹女神，負責在眾神與人間傳遞訊息，所以也帶有溝通與靈感的意味。',[3,12,7]],
+['Stella','F','/ˈstɛlə/','史黛拉','星星','拉丁文「星」。16 世紀詩人錫德尼的十四行詩集《Astrophel and Stella》讓它成為受歡迎的女名。',[1,3,15]],
+['Victoria','F','/vɪkˈtɔːriə/','維多利亞','勝利','羅馬的勝利女神就叫 Victoria。英國維多利亞女王在位 60 多年，讓這個名字成為堅定與威儀的象徵。',[2,10,14]],
+['Hazel','F','/ˈheɪzəl/','海瑟','榛樹','凱爾特神話中，榛樹與智慧有關：傳說吃下榛果的智慧之鮭，就能得到全知的智慧。',[5,10,13]],
+['Zoe','F','/ˈzoʊi/','柔伊','生命','希臘文「生命」。早期講希臘語的猶太人與基督徒，用它來對應夏娃（Eve）的名字。',[4,8,7]],
+['Nora','F','/ˈnɔːrə/','諾拉','光明、榮譽','常被視為 Honora 或 Eleanor 的簡稱。易卜生《玩偶之家》的娜拉選擇離家，成為女性獨立的象徵。',[14,9,10]],
+['Daisy','F','/ˈdeɪzi/','黛西','日之眼','古英語 dægesēge，意為「日之眼」，因為雛菊會隨日出開花、日落闔上。也是 Margaret 的暱稱。',[4,11,0]],
+['Luna','F','/ˈluːnə/','露娜','月亮','拉丁文「月亮」，羅馬神話中的月神。給人安靜、神祕又帶點浪漫的印象。',[15,12,3]],
+['Ruby','F','/ˈruːbi/','魯比','紅寶石','來自拉丁文 rubeus「紅色」。維多利亞時代興起以寶石命名的風氣，紅寶石象徵熱情與勇氣。',[8,2,12]],
+['Ethan','M','/ˈiːθən/','伊森','堅固、持久','希伯來文 Eitan，意為「堅固」。《聖經》中有一位以智慧聞名的以斯拉人以探（Ethan）。',[10,5,14]],
+['Leo','M','/ˈliːoʊ/','里歐','獅子','拉丁文「獅子」，歷史上有十三位教宗取名 Leo。獅子座的名字，也象徵領導與勇氣。',[2,12,8]],
+['Henry','M','/ˈhɛnri/','亨利','家園的統治者','源自日耳曼語 Heimirich。英國有八位國王叫亨利，是最有王者氣質的經典男名之一。',[12,14,9]],
+['Oliver','M','/ˈɒlɪvər/','奧利佛','橄欖樹','古法語 Olivier，與橄欖樹（和平的象徵）連在一起。狄更斯的《孤雛淚》主角也叫奧利佛。',[0,5,4]],
+['Felix','M','/ˈfiːlɪks/','菲力克斯','幸運、快樂','拉丁文「幸運」。羅馬將軍蘇拉曾自稱 Felix，意思是「受命運眷顧的人」。',[4,11,8]],
+['Theo','M','/ˈθiːoʊ/','提歐','神的禮物','Theodore 的簡稱，希臘文 theos「神」加 doron「禮物」。梵谷最親近的弟弟就叫 Theo。',[1,0,13]],
+['Lucas','M','/ˈluːkəs/','路卡斯','來自盧卡尼亞的人','希臘文 Loukas，傳統上也聯想到拉丁文 lux「光」。《路加福音》的作者就是 Luke（Lucas 的同源名）。',[3,13,1]],
+['Arthur','M','/ˈɑːrθər/','亞瑟','熊（可能）','詞源不確定，一說與凱爾特語的「熊」有關。亞瑟王和圓桌騎士的傳說，讓它成為領袖與正義的象徵。',[12,2,9]],
+['Aaron','M','/ˈɛərən/','亞倫','來源不確定','《聖經》中摩西的哥哥，是以色列人的第一位大祭司，代表可靠的代言人與忠誠的輔佐者。',[5,9,14]],
+['Jasper','M','/ˈdʒæspər/','賈斯伯','寶藏守護者','源自波斯語，意為「掌管寶藏的人」。傳統上相傳東方三博士之一就叫賈斯伯。',[15,13,1]],
+['Dylan','M','/ˈdɪlən/','狄倫','海之子','威爾斯神話中的海神 Dylan ail Don。詩人狄倫·湯瑪斯與歌手巴布·狄倫，都讓它帶有藝術氣息。',[7,3,15]],
+['Vincent','M','/ˈvɪnsənt/','文森','征服','拉丁文 vincere「征服」。梵谷（Vincent van Gogh）以不懈的創作，讓它成為堅持與熱情的名字。',[10,3,13]],
+['Jack','M','/dʒæk/','傑克','上帝的恩典','中古英語 Jankin 是 John 的小名，後來獨立成名。John 在希伯來文中意為「上帝的恩典」。',[11,8,7]],
+['Alex','N','/ˈælɪks/','亞歷克斯','人類的守護者','希臘文 Alexandros，由「防衛」和「人」組成。亞歷山大大帝讓它與無畏和遠征連在一起。',[2,12,1]],
+['Jamie','N','/ˈdʒeɪmi/','傑米','追隨者、取代者','James 的小名，James 與 Jacob 同源（希伯來文 Yaʿaqov）。在蘇格蘭特別常見，聽來親切好相處。',[11,0,4]],
+['Taylor','N','/ˈteɪlər/','泰勒','裁縫','古法語 tailleur 「裁縫」，原本是職業姓氏，後來才變成名字，帶有手藝與細膩的聯想。',[3,13,5]],
+['Jordan','N','/ˈdʒɔːrdən/','喬丹','向下流動','源自約旦河，希伯來文意為「向下流」。十字軍把河水帶回歐洲做洗禮，因此成為洗禮名。',[7,5,14]],
+['Riley','N','/ˈraɪli/','萊利','勇敢（愛爾蘭語）','源自愛爾蘭姓氏 Ó Raghallaigh，常被解釋為「勇敢」。口語中也有「過得很愜意」的活潑感。',[11,7,2]],
+['Sage','N','/seɪdʒ/','賽吉','智者、鼠尾草','英文 sage 是「智者」，同時也是鼠尾草，古人認為它能療癒，所以有智慧與沉靜的意象。',[1,5,14]],
+['Rowan','N','/ˈroʊən/','羅文','花楸樹','凱爾特民間相信花楸樹能辟邪、保護家園，因此有堅韌與守護的含意。',[10,3,5]],
+['Quinn','N','/kwɪn/','昆恩','Conn 的後裔','來自愛爾蘭姓氏 Ó Cuinn，Conn 的意思被認為是「智慧、理性」。',[1,13,15]],
+['Eden','N','/ˈiːdən/','伊登','喜悅、樂園','希伯來文「歡愉」，也是《聖經》中的伊甸園，帶有平和與包容的氣質。',[0,14,4]],
+['Robin','N','/ˈrɒbɪn/','羅賓','閃耀的名聲','Robert 的小名，日耳曼語意為「閃耀的名聲」。羅賓漢的傳說，讓它帶有熱血與自由的味道。',[8,2,7]],
+['Charlie','N','/ˈtʃɑːrli/','查理','自由人','Charles 的小名，日耳曼語 karl 為「自由人」。查理曼大帝與卓別林，各自帶來領袖與幽默的聯想。',[11,7,4]],
+['Skylar','N','/ˈskaɪlər/','史凱勒','學者','源自荷蘭姓氏 Schuyler，意為「學者」。名字裡的 sky 又讓人聯想到遼闊與自由。',[7,15,13]],
+['Morgan','N','/ˈmɔːrɡən/','摩根','海的光輝','威爾斯名字，常解為「海」加「明亮」。亞瑟王傳說中神祕的 Morgan le Fay 也與此有關。',[12,5,15]]
+];
+let gender='N',sel=new Set(),seed=0;
+const $=id=>document.getElementById(id);
+function drawTraits(){const tr=$('traits');tr.innerHTML='';
+L[gender].forEach((t,i)=>{const b=document.createElement('button');b.type='button';b.className='pill';b.textContent=t;b.setAttribute('aria-pressed',sel.has(i));
+b.onclick=()=>{sel.has(i)?sel.delete(i):sel.add(i);b.setAttribute('aria-pressed',sel.has(i));speak(t,'zh-TW')};tr.appendChild(b)})}
+drawTraits();
+document.querySelectorAll('#gender .pill').forEach(b=>b.onclick=()=>{gender=b.dataset.g;
+document.querySelectorAll('#gender .pill').forEach(x=>x.setAttribute('aria-pressed',x===b));drawTraits()});
+const ZC=[[1,20,'水瓶座',[3,7,15]],[2,19,'雙魚座',[12,0,3]],[3,21,'牡羊座',[2,8,12]],[4,20,'金牛座',[5,10,6]],[5,21,'雙子座',[1,11,15]],[6,22,'巨蟹座',[0,13,14]],[7,23,'獅子座',[8,12,4]],[8,23,'處女座',[13,1,9]],[9,23,'天秤座',[6,0,4]],[10,24,'天蠍座',[15,10,8]],[11,23,'射手座',[7,4,2]],[12,22,'魔羯座',[10,5,14]]];
+function zodiac(v){const m=/^(\d+)-(\d+)-(\d+)$/.exec(v||'');if(!m)return null;const k=+m[2]*100+ +m[3];let r=ZC[11];for(const z of ZC)if(z[0]*100+z[1]<=k)r=z;return [r[2],r[3]]}
+function hash(s){let h=7;for(const c of s)h=(h*31+c.codePointAt(0))>>>0;return h}
+function speak(n,l){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(n);u.lang=l||'en-US';u.rate=.85;speechSynthesis.speak(u)}catch(e){}}
+function run(){
+  const cn=$('cn').value.trim(),py=$('py').value.trim();
+  $('err').textContent='';
+  if(!cn){$('err').textContent='請輸入中文姓名。';return}
+  if(!sel.size){$('err').textContent='請至少選擇一個人格特質。';return}
+  const lab=L[gender];const sg=zodiac($('bd').value);const zs=sg?sg[1]:[];
+  const parts=py.split(/\s+/).filter(Boolean);
+  const sur=parts.length>1?parts[0]:'';
+  const giv=(parts.length>1?parts[1]:parts[0]||'').replace(/[^A-Za-z]/g,'');
+  const ini=giv?giv[0].toUpperCase():'';
+  const pool=N.filter(n=>gender==='N'||n[1]===gender||n[1]==='N');
+  const top=pool.map(n=>{
+    const hit=n[6].filter(i=>sel.has(i));
+    const sound=!!ini&&n[0][0]===ini;
+    const zh=n[6].filter(i=>zs.includes(i)&&!sel.has(i));const s=hit.length*3+zh.length*1.5+(sound?2:0)+((hash(cn+n[0])+seed*977)%100)/100*1.5;
+    return{n,hit,sound,zh,s}
+  }).sort((a,b)=>b.s-a.s).slice(0,3);
+  const surC=sur?sur[0].toUpperCase()+sur.slice(1).toLowerCase():'';
+  const tags=r=>r.hit.map(i=>`<span class="tag">${lab[i]}</span>`).join('')+r.zh.map(i=>`<span class="tag">${sg[0]}：${lab[i]}</span>`).join('')+(r.sound?'<span class="tag">發音相近</span>':'');
+  const pr=n=>`<p class="pron"><span>${n[2]}</span>　${n[3]}<button type="button" class="spk" data-n="${n[0]}" aria-label="播放 ${n[0]} 的發音">🔊 聽發音</button></p>`;
+  const [a,...rest]=top;
+  $('out').innerHTML=`<div class="top"><div class="seal" aria-hidden="true">${[...cn].slice(0,4).map(c=>`<span>${c}</span>`).join('')}</div>
+  <div><h2 class="nm">${a.n[0]}</h2>${surC?`<p class="full">${a.n[0]} ${surC}</p>`:''}
+  ${pr(a.n)}
+  <p class="mean"><b>含義</b>　${a.n[4]}。符合你的${a.hit.length?a.hit.map(i=>lab[i]).join('、'):'獨特'}氣質。</p>
+  ${sg?`<p class="mean"><b>星座</b>　${sg[0]}的你，帶有${sg[1].map(i=>lab[i]).join('、')}的特質。${a.zh.length?'這個名字也呼應了你的'+a.zh.map(i=>lab[i]).join('、')+'。':''}</p>`:''}
+  <p class="story"><b>典故</b>　${a.n[5]}</p>
+  <div class="tags">${tags(a)}</div></div></div>
+  <div class="alts">${rest.map(r=>`<div class="alt"><h3 class="nm">${r.n[0]}</h3>${pr(r.n)}<p class="mean">${r.n[4]}</p><details><summary>典故</summary><p class="story">${r.n[5]}</p></details><div class="tags">${tags(r)}</div></div>`).join('')}</div>
+  <button type="button" class="again" id="again">換一組試試</button>
+  ${py?'':'<p class="note">填上拼音，可以配對發音相近的名字，也會顯示完整姓名。</p>'}`;
+  $('again').onclick=()=>{seed++;run()};
+  document.querySelectorAll('.spk').forEach(b=>b.onclick=()=>speak(b.dataset.n));
+}
+$('go').onclick=()=>{seed=0;run()};
+</script>
+</body>
+</html>
